@@ -9,11 +9,11 @@ public class NationalUnitsImpl implements INationalUnits {
     private INationalDao unitsDao;
 
     public NationalUnitsImpl(){
-        unitsDao=new NationalDaompl();
+        //unitsDao=new NationalDaompl();
     }
 
     public void addNationalUnits(NationalUnits units) {
        // unitsDao.addNationalUnits(units);
-        unitsDao.addModel(units);
+        //unitsDao.addModel(units);
     }
 }

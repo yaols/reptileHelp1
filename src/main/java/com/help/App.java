@@ -1,9 +1,12 @@
 package com.help;
 
 
+import com.ssm.Dao.DBTools;
+import com.ssm.MD5Helper;
 import com.ssm.model.NationalUnits;
 import com.ssm.service.INationalUnits;
 import com.ssm.service.NationalUnitsImpl;
+import org.apache.ibatis.session.SqlSession;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -65,7 +68,7 @@ public class App {
     /*
     * 国家法律法规实体
     * */
-    private static INationalUnits service = new NationalUnitsImpl();
+    //private static INationalUnits service = new NationalUnitsImpl();
     private static void setNationalUnitsModel(String name,String jumpUrl,int groupId,
                                                 int parentId){
         NationalUnits model=new NationalUnits();
@@ -77,8 +80,22 @@ public class App {
         model.setCreateTime(sdf.format(d));
         model.setJumpUrl(jumpUrl);
         model.setStates(1);
+        model.setCode(MD5Helper.uuidEncrypt16());
 
-        service.addNationalUnits(model);
+        SqlSession sqlSession = DBTools.getSession();
+
+
+        try {
+            sqlSession.insert("insertNationalunits",model);
+            System.out.println(model.toString());
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            sqlSession.rollback();
+        }
+
+
+        //service.addNationalUnits(model);
 
     }
 

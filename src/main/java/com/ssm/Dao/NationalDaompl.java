@@ -1,6 +1,6 @@
 package com.ssm.Dao;
 
-import com.ssm.Mapper.UserMapper;
+
 import com.ssm.model.NationalUnits;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -16,31 +16,11 @@ import java.sql.Statement;
 import java.io.IOException;
 import java.io.Reader;
 
-public class NationalDaompl implements INationalDao {
+public class NationalDaompl{
 
     private SqlSessionFactory sessionFactory;
     private SqlSession session;
-    private UserMapper mapper;
 
-    public NationalDaompl(){
-        String resource = "config.xml";
-        try {
-            Reader reader = Resources.getResourceAsReader(resource);
-            sessionFactory = new SqlSessionFactoryBuilder().build(reader);
-            session = sessionFactory.openSession();
-            mapper = session.getMapper(UserMapper.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /*
-    *
-    * */
-    public void addNationalUnits(NationalUnits units) {
-        mapper.addNationalUnits(units);
-        session.commit();
-    }
 
     //声明Connection对象
     Connection con;

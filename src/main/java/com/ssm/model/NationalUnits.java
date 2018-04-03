@@ -5,57 +5,6 @@ package com.ssm.model;
 *
 * */
 public class NationalUnits {
-
-    private String name;
-    private String jumpUrl;
-    private int id;
-    private int groupId;
-    private int parentId;
-    private String createTime;
-    private int states;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getStates() {
-        return states;
-    }
-
-    public void setStates(int states) {
-        this.states = states;
-    }
-
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
-
-    public int getParentId() {
-
-        return parentId;
-    }
-
-    public void setParentId(int parentId) {
-        this.parentId = parentId;
-    }
-
-    public int getGroupId() {
-
-        return groupId;
-    }
-
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
-    }
-
     public String getName() {
         return name;
     }
@@ -71,5 +20,78 @@ public class NationalUnits {
     public void setJumpUrl(String jumpUrl) {
         this.jumpUrl = jumpUrl;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
+    }
+
+    public int getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public int getStates() {
+        return states;
+    }
+
+    public void setStates(int states) {
+        this.states = states;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    //单位部门名称
+    private String name;
+
+    //跳转url
+    private String jumpUrl;
+
+    //id
+    private int id;
+
+    //分组id
+    private int groupId;
+
+    //
+    private int parentId;
+
+    //创建时间
+    private String createTime;
+
+    //状态
+    private int states;
+
+    //唯一标识
+    private String code;
+
 
 }
