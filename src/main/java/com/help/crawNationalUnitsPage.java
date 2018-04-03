@@ -91,7 +91,7 @@ public class crawNationalUnitsPage {
 
         try {
             sqlSession.insert("insertnationalpage",model);
-            System.out.println(model.toString());
+            //System.out.println(model.toString());
             sqlSession.commit();
         } catch (Exception e) {
             e.printStackTrace();

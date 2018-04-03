@@ -5,7 +5,9 @@
 <configuration>
     <properties resource="mysql.properties"/>
     <typeAliases>
-        <typeAlias type="com.ssm.model.NationalUnits" alias="NationalUnits"/>
+        <!--<typeAlias type="com.ssm.model.NationalUnits" alias="NationalUnits"/>-->
+        <package name="com.ssm.model" />
+        <package name="com.ssm.service" />
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -19,7 +21,12 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mapper/NationalUnits.xml"/>
-        <mapper resource="mapper/NationalPage.xml"/>
+        <!--<package name="mapper"/>-->
+        <!--<package name="com.ssm.service"/>-->
+        <!--<mapper resource="mapper/NationalUnits.xml"/>-->
+        <!--<mapper resource="mapper/NationalPage.xml"/>-->
+
+
+        <mapper resource="mapper/TestMapperInterface.xml"/>
     </mappers>
 </configuration>
