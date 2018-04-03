@@ -20,10 +20,10 @@ import java.util.List;
 
 public class App {
 
-    public static  void main(String [] args) throws IOException {
+    public static  void main(String [] args) throws IOException, InterruptedException {
         System.out.println("Hello World!");
 
-        crawNationalUnitsPage();
+        crawNationalUnitsPage.crawNationalUnitsPage();
         //crawlNationalUnitsData();
 
 
@@ -100,20 +100,6 @@ public class App {
     }
 
 
-    /*
-    *
-    *抓取国家法律法规单位分页
-    * */
-    private static void crawNationalUnitsPage(){
 
-        int pageindex=1;
-        StringBuilder builder=new StringBuilder();
-        builder.append("http://www.law-lib.com/law/lawml.asp");
-        builder.append("?bbdw=%C8%AB%B9%FA%C8%CB%C3%F1%B4%FA%B1%ED%B4%F3%BB%E1&");
-        builder.append(String.format("pages=%s&tm1=&tm2=",pageindex));
-
-        System.out.println(builder.toString());
-
-    }
 
 }

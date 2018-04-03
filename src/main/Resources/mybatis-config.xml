@@ -20,5 +20,6 @@
     </environments>
     <mappers>
         <mapper resource="mapper/NationalUnits.xml"/>
+        <mapper resource="mapper/NationalPage.xml"/>
     </mappers>
 </configuration>
