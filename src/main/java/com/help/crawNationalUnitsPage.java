@@ -2,7 +2,7 @@ package com.help;
 
 import com.ssm.Dao.DBTools;
 import com.ssm.MD5Helper;
-import com.ssm.model.NationalPage;
+import com.ssm.service.NationalPageMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,7 +11,9 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /***
  * 部门单位分页抓取
@@ -28,12 +30,17 @@ public class crawNationalUnitsPage {
 
 
         String url="";
+//        url=GetPageUrl(1);
+//        crawlNationalUnitsData(url);
 
-        for (int i=29;i<50;i++){
+
+        for (int i=0;i<50;i++){
             url=GetPageUrl(i+1);
             crawlNationalUnitsData(url);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
         }
+
+
 
         System.out.println("全国人民代表大会抓取完毕");
     }
@@ -68,25 +75,60 @@ public class crawNationalUnitsPage {
         String firstText="";
         String lastText="";
 
-        for (Element element : pElements) {
+        List<com.ssm.model.NationalPage> NationalPages=new ArrayList<com.ssm.model.NationalPage>();
 
+        int num=0;
+
+        for (Element element : pElements) {
+            num++;
             fisrtElement=element.child(0);
             firstHref=fisrtElement.attr("href");
             firstText=fisrtElement.text();
 
             lastText=element.child(1).text();
-            NationalPage model=setNationalPageModel(firstText,lastText,firstHref);
-            addNationalPage(model);
+            com.ssm.model.NationalPage model=setNationalPageModel(firstText,lastText,firstHref);
+            NationalPages.add(model);
+
+
+            //每次批量插入20个  然后清空集合
+            if(NationalPages.size()==20){
+                System.out.println("批量插入数据开始:"+NationalPages.size());
+                batchNationalPage(NationalPages);
+                NationalPages.clear();
+                System.out.println("批量插入数据结束:"+NationalPages.size());
+            }
         }
 
     }
 
 
     /***
+     * 批量插入  20条插入一次
+     * @param list
+     */
+    private static void batchNationalPage(List<com.ssm.model.NationalPage>list){
+
+        SqlSession sqlSession = DBTools.getSession();
+
+        NationalPageMapper nationalMapper = sqlSession.getMapper(NationalPageMapper.class);
+
+        try {
+            nationalMapper.batchNationalPage(list);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            sqlSession.rollback();
+        }finally {
+            sqlSession.close();
+        }
+
+    }
+
+    /***
      * 部门分页实体数据库新增
      * @param model
      */
-    private static void addNationalPage(NationalPage model){
+    private static void addNationalPage(com.ssm.model.NationalPage model){
         SqlSession sqlSession = DBTools.getSession();
 
         try {
@@ -105,8 +147,8 @@ public class crawNationalUnitsPage {
      * @param descript  描述
      * @return
      */
-    private static NationalPage setNationalPageModel(String title,String descript,String jumpUrl){
-        NationalPage model =new NationalPage();
+    private static com.ssm.model.NationalPage setNationalPageModel(String title, String descript, String jumpUrl){
+        com.ssm.model.NationalPage model =new com.ssm.model.NationalPage();
 
         model.setCode(MD5Helper.uuidEncrypt16());
         model.setKeyWords("全国人民代表大会");

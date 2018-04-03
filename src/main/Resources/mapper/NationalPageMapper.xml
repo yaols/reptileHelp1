@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.service.NationalPageMapper">
+
+    <insert id="batchNationalPage" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType ="java.lang.Long" keyProperty= "id" order= "AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey >
+        insert into nationalpage (code,keyWords,title,descript,createTime,nationalId,jumpUrl,states) values
+        <foreach collection="nationals" item="item" index="index" separator=",">
+            (#{item.code},#{item.keyWords},#{item.title},#{item.descript},#{item.createTime},#{item.nationalId},#{item.jumpUrl},#{item.states})
+        </foreach>
+    </insert>
+
+    <insert id="insertnationalpage" useGeneratedKeys="true" keyProperty="id">
+        insert into nationalpage (code,keyWords,title,descript,createTime,nationalId,jumpUrl,states)
+        values (#{code},#{keyWords},#{title},#{descript},#{createTime},#{nationalId},#{jumpUrl},#{states});
+    </insert>
+
+
+</mapper>

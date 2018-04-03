@@ -17,9 +17,15 @@ public class testBatchAdd {
         TestMapperInterface testMapper = sqlSession.getMapper(TestMapperInterface.class);
 
         List<Test> tests = new ArrayList<Test>();
-        tests.add(new Test(1,"zs",14));
-        tests.add(new Test(2,"ls",15));
+        Test test1=new Test();
+        test1.setName("zs");
+        test1.setAge(16);
+        tests.add(test1);
 
+        test1=new Test();
+        test1.setName("ww");
+        test1.setAge(22);
+        tests.add(test1);
         //Test test=new Test(3,"ww",12);
 
 

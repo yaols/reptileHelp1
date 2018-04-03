@@ -22,11 +22,11 @@
     </environments>
     <mappers>
         <!--<package name="mapper"/>-->
-        <!--<package name="com.ssm.service"/>-->
         <!--<mapper resource="mapper/NationalUnits.xml"/>-->
         <!--<mapper resource="mapper/NationalPage.xml"/>-->
 
 
         <mapper resource="mapper/TestMapperInterface.xml"/>
+        <mapper resource="mapper/NationalPageMapper.xml"/>
     </mappers>
 </configuration>

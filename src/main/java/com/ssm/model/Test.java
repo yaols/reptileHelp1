@@ -30,10 +30,6 @@ public class Test {
     private String name;
     private int age;
 
-    public Test(int id,String name,int age){
-        this.name=name;
-        this.age=age;
-        this.id=id;
-    }
+
 
 }
