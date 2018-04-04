@@ -14,6 +14,8 @@ import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +36,16 @@ public class App {
         //testBatchAdd.batchAdd();
 
         //分页查询 单位分页数据
-        crawNationalUnitsPage.getNationalUnitsPage();
+        //crawNationalUnitsPage.getNationalUnitsPage();
+
+
+        //GBK中文字符串编码
+        //String urlStr2 = URLEncoder.encode("全国人民代表大会", "GBK");
+        //System.out.println(urlStr2);
+        //GBK中文字符串解码
+        //String size=URLDecoder.decode("%C8%AB%B9%FA%C8%CB%C3%F1%B4%FA%B1%ED%B4%F3%BB%E1", "GBK");
+        //System.out.println(size);
+
     }
 
     /*
