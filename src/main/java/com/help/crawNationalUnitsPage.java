@@ -77,10 +77,10 @@ public class crawNationalUnitsPage {
 
         List<com.ssm.model.NationalPage> NationalPages=new ArrayList<com.ssm.model.NationalPage>();
 
-        int num=0;
+        //int num=0;
 
         for (Element element : pElements) {
-            num++;
+            //num++;
             fisrtElement=element.child(0);
             firstHref=fisrtElement.attr("href");
             firstText=fisrtElement.text();
