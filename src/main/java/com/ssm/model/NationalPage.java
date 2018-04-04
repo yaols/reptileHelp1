@@ -79,6 +79,17 @@ public class NationalPage {
         this.jumpUrl = jumpUrl;
     }
 
+
+
+    public int getSpareId() {
+        return spareId;
+    }
+
+    public void setSpareId(int spareId) {
+        this.spareId = spareId;
+    }
+
+
     //主键id
     private int id;
     //唯一标识
@@ -97,5 +108,6 @@ public class NationalPage {
     private String jumpUrl;
     //状态
     private int states;
-
+    //抓取路径id
+    private int spareId;
 }

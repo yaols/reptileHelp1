@@ -13,6 +13,7 @@
         <result property="nationalId" column="nationalId" javaType="java.lang.Integer"></result>
         <result property="jumpUrl" column="jumpUrl" javaType="java.lang.String"></result>
         <result property="states" column="states" javaType="java.lang.Integer"></result>
+        <result property="spareId" column="spareId" javaType="java.lang.Integer"></result>
     </resultMap>
 
 
@@ -20,9 +21,10 @@
         <selectKey resultType ="java.lang.Long" keyProperty= "id" order= "AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey >
-        insert into nationalpage (code,keyWords,title,descript,createTime,nationalId,jumpUrl,states) values
+        insert into nationalpage (code,keyWords,title,descript,createTime,nationalId,jumpUrl,states,spareId) values
         <foreach collection="nationals" item="item" index="index" separator=",">
-            (#{item.code},#{item.keyWords},#{item.title},#{item.descript},#{item.createTime},#{item.nationalId},#{item.jumpUrl},#{item.states})
+            (#{item.code},#{item.keyWords},#{item.title},#{item.descript},#{item.createTime},#{item.nationalId},#{item.jumpUrl},#{item.states},
+            #{item.spareId})
         </foreach>
     </insert>
 
@@ -34,7 +36,7 @@
 
     <select id="selectAllNationalPage" parameterType="int" resultMap="nationalPageMap">
         select id,code,keyWords,title,descript,createTime,nationalId,
-        jumpUrl,states from nationalpage
+        jumpUrl,states,spareId from nationalpage
         limit #{start},#{pageSize}
     </select>
 

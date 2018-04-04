@@ -68,7 +68,8 @@ public class crawNationalUnitsPage {
      * */
     private static void crawlNationalUnitsData(String url) throws IOException {
 
-        Document doc = Jsoup.connect(url).get();
+        Document doc = Jsoup.connect(url).header("Connection", "close")//如果是这种方式，这里务必带上
+                .timeout(8000).get();
         Elements pElements = doc.select("ul.line2 li");
 
         //根元素
@@ -161,6 +162,11 @@ public class crawNationalUnitsPage {
         model.setCreateTime(sdf.format(d));
         model.setState(1);
         model.setJumpUrl(jumpUrl);
+        String[]  strs=jumpUrl.split("=");
+        model.setSpareId(Integer.parseInt(strs[1]));
+
+
+
         return model;
     }
 
@@ -172,12 +178,14 @@ public class crawNationalUnitsPage {
         int pageSize=10;
         List<NationalPage> list=new ArrayList<NationalPage>();
 
+        //循环次数  根据总条数除以每次显示条数进行分页循环加载
+        //部门分页数据  分页查询  根据getJumpUrl查询数据详情  然后十条一次插入数据库
         for (int i=1;i<3;i++){
             start=pageSize*(i-1);
             list=nationalPageList(start,pageSize);
 
             for (NationalPage item : list){
-                crawNationalDetails.getNationalDetails(item.getJumpUrl());
+                crawNationalDetails.getNationalDetails(item.getJumpUrl(),item.getSpareId(),item.getId());
             }
 
             //System.out.println("加载数据条数"+list.size());

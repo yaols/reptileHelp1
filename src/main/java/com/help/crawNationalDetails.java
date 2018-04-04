@@ -26,12 +26,20 @@ public class crawNationalDetails {
 
     private static List<NationalDetails> NationalDetailsList=new ArrayList<NationalDetails>();
 
-    public static void getNationalDetails(String url) throws IOException, InterruptedException {
+    /***
+     * 根据URL 获取正文详情数据
+     * @param url
+     * @param detailsId 抓取数据url?id=
+     * @param pageId 数据库主键id
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static void getNationalDetails(String url,int detailsId,int pageId) throws IOException, InterruptedException {
 
         Thread.sleep(3000);
-        String[]  strs=url.split("=");
+        //String[]  strs=url.split("=");
         url=getUrl(url);
-        NationalDetails details= crawlNationalDetailsData(url,Integer.parseInt(strs[1]));
+        NationalDetails details= crawlNationalDetailsData(url,detailsId,pageId);
         NationalDetailsList.add(details);
 
         if(NationalDetailsList.size()==10){
@@ -54,10 +62,15 @@ public class crawNationalDetails {
         return builder.toString();
     }
 
-    /*
+    /***
      * 抓取国家法律法规单位详情数据
-     * */
-    private static NationalDetails crawlNationalDetailsData(String url,int detailsId) throws IOException {
+     * @param url
+     * @param detailsId
+     * @param pageId
+     * @return
+     * @throws IOException
+     */
+    private static NationalDetails crawlNationalDetailsData(String url,int detailsId,int pageId) throws IOException {
 
         Document doc = Jsoup.connect(url).header("Connection", "close")//如果是这种方式，这里务必带上
                 .timeout(8000).get();
@@ -87,7 +100,7 @@ public class crawNationalDetails {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         details.setCreateTime(sdf.format(d));
         details.setCode(MD5Helper.uuidEncrypt16());
-        details.setNationalPageId(detailsId);
+        details.setNationalPageId(pageId);
         details.setSpareId(detailsId);
         return details;
     }
