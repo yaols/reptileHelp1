@@ -23,6 +23,9 @@ public class App {
     public static  void main(String [] args) throws IOException, InterruptedException {
         System.out.println("Hello World!");
 
+        //String url="law_view.asp?id=613638";
+        //crawNationalDetails.getNationalDetails(url);
+
         //crawNationalUnitsPage.crawNationalUnitsPage();
         //crawlNationalUnitsData();
 

@@ -2,6 +2,7 @@ package com.help;
 
 import com.ssm.Dao.DBTools;
 import com.ssm.MD5Helper;
+import com.ssm.model.NationalDetails;
 import com.ssm.model.NationalPage;
 import com.ssm.service.NationalPageMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -166,14 +167,20 @@ public class crawNationalUnitsPage {
     /***
      * 分页查询mysql数据库
      */
-    public static void getNationalUnitsPage(){
+    public static void getNationalUnitsPage() throws IOException, InterruptedException {
         int start=1;
-        int pageSize=30;
+        int pageSize=10;
         List<NationalPage> list=new ArrayList<NationalPage>();
-        for (int i=1;i<5;i++){
+
+        for (int i=1;i<3;i++){
             start=pageSize*(i-1);
             list=nationalPageList(start,pageSize);
-            System.out.println("加载数据条数"+list.size());
+
+            for (NationalPage item : list){
+                crawNationalDetails.getNationalDetails(item.getJumpUrl());
+            }
+
+            //System.out.println("加载数据条数"+list.size());
         }
     }
 

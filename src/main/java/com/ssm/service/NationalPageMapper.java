@@ -18,7 +18,7 @@ public interface NationalPageMapper {
     /***
      * 分页查询部门分页数据
      * @param start
-     * @param limit
+     * @param pageSize
      * @return
      * @throws Exception
      */

@@ -28,5 +28,6 @@
 
         <mapper resource="mapper/TestMapperInterface.xml"/>
         <mapper resource="mapper/NationalPageMapper.xml"/>
+        <mapper resource="mapper/NationalPageDetailsMapper.xml"/>
     </mappers>
 </configuration>
