@@ -2,6 +2,7 @@ package com.help;
 
 import com.ssm.Dao.DBTools;
 import com.ssm.MD5Helper;
+import com.ssm.model.NationalPage;
 import com.ssm.service.NationalPageMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.jsoup.Jsoup;
@@ -121,7 +122,6 @@ public class crawNationalUnitsPage {
         }finally {
             sqlSession.close();
         }
-
     }
 
     /***
@@ -162,5 +162,45 @@ public class crawNationalUnitsPage {
         model.setJumpUrl(jumpUrl);
         return model;
     }
+
+    /***
+     * 分页查询mysql数据库
+     */
+    public static void getNationalUnitsPage(){
+        int start=1;
+        int pageSize=30;
+        List<NationalPage> list=new ArrayList<NationalPage>();
+        for (int i=1;i<5;i++){
+            start=pageSize*(i-1);
+            list=nationalPageList(start,pageSize);
+            System.out.println("加载数据条数"+list.size());
+        }
+    }
+
+    /***
+     * 分页查询
+     * @param start
+     * @param pageSize
+     * @return
+     */
+    private static List<NationalPage> nationalPageList(int start,int pageSize){
+        List<NationalPage> list =new ArrayList<NationalPage>();
+        SqlSession sqlSession = DBTools.getSession();
+
+        NationalPageMapper nationalMapper = sqlSession.getMapper(NationalPageMapper.class);
+
+        try {
+            list=nationalMapper.selectAllNationalPage(start,pageSize);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            sqlSession.rollback();
+        }finally {
+            sqlSession.close();
+        }
+
+        return list;
+    }
+
 
 }

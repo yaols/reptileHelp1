@@ -23,14 +23,15 @@ public class App {
     public static  void main(String [] args) throws IOException, InterruptedException {
         System.out.println("Hello World!");
 
-        crawNationalUnitsPage.crawNationalUnitsPage();
+        //crawNationalUnitsPage.crawNationalUnitsPage();
         //crawlNationalUnitsData();
 
 
         //批量插入测试
         //testBatchAdd.batchAdd();
 
-
+        //分页查询 单位分页数据
+        crawNationalUnitsPage.getNationalUnitsPage();
     }
 
     /*

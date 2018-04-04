@@ -12,6 +12,15 @@ public interface NationalPageMapper {
      * @param nationals
      * @return
      */
-    public  void  batchNationalPage(@Param("nationals") List<com.ssm.model.NationalPage> nationals);
+    public  void  batchNationalPage(@Param("nationals") List<NationalPage> nationals);
 
+
+    /***
+     * 分页查询部门分页数据
+     * @param start
+     * @param limit
+     * @return
+     * @throws Exception
+     */
+    public List<NationalPage> selectAllNationalPage(@Param("start")int start,@Param("pageSize")int pageSize) throws Exception;
 }

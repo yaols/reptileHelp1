@@ -2,6 +2,20 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.service.NationalPageMapper">
 
+
+    <resultMap id="nationalPageMap" type="NationalPage">
+        <id property="id" column="id" javaType="java.lang.Integer"></id>
+        <result property="code" column="code" javaType="java.lang.String"></result>
+        <result property="keyWords" column="keyWords" javaType="java.lang.String"></result>
+        <result property="title" column="title" javaType="java.lang.String"></result>
+        <result property="descript" column="descript" javaType="java.lang.String"></result>
+        <result property="createTime" column="createTime" javaType="java.lang.String"></result>
+        <result property="nationalId" column="nationalId" javaType="java.lang.Integer"></result>
+        <result property="jumpUrl" column="jumpUrl" javaType="java.lang.String"></result>
+        <result property="states" column="states" javaType="java.lang.Integer"></result>
+    </resultMap>
+
+
     <insert id="batchNationalPage" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="id">
         <selectKey resultType ="java.lang.Long" keyProperty= "id" order= "AFTER">
             SELECT LAST_INSERT_ID()
@@ -17,5 +31,11 @@
         values (#{code},#{keyWords},#{title},#{descript},#{createTime},#{nationalId},#{jumpUrl},#{states});
     </insert>
 
+
+    <select id="selectAllNationalPage" parameterType="int" resultMap="nationalPageMap">
+        select id,code,keyWords,title,descript,createTime,nationalId,
+        jumpUrl,states from nationalpage
+        limit #{start},#{pageSize}
+    </select>
 
 </mapper>
