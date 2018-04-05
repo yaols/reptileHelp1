@@ -25,7 +25,7 @@
         <!--<mapper resource="mapper/NationalUnits.xml"/>-->
         <!--<mapper resource="mapper/NationalPage.xml"/>-->
 
-
+        <mapper resource="mapper/NationalUnitsMapper.xml"/>
         <mapper resource="mapper/TestMapperInterface.xml"/>
         <mapper resource="mapper/NationalPageMapper.xml"/>
         <mapper resource="mapper/NationalPageDetailsMapper.xml"/>

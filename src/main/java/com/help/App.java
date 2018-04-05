@@ -5,7 +5,9 @@ import com.ssm.Dao.DBTools;
 import com.ssm.MD5Helper;
 import com.ssm.model.NationalUnits;
 import com.ssm.service.INationalUnits;
+import com.ssm.service.NationalPageDetailsMapper;
 import com.ssm.service.NationalUnitsImpl;
+import com.ssm.service.NationalUnitsMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,7 +31,7 @@ public class App {
         //crawNationalDetails.getNationalDetails(url);
 
         //crawNationalUnitsPage.crawNationalUnitsPage();
-        //crawlNationalUnitsData();
+        crawlNationalUnitsData();
 
 
         //批量插入测试
@@ -91,6 +93,7 @@ public class App {
                                                 int parentId){
         NationalUnits model=new NationalUnits();
         model.setName(name);
+        model.setCode(MD5Helper.uuidEncrypt16());
         model.setGroupId(groupId);
         model.setParentId(parentId);
         Date d=new Date();
@@ -104,8 +107,10 @@ public class App {
 
 
         try {
-            sqlSession.insert("insertNationalunits",model);
-            System.out.println(model.toString());
+            NationalUnitsMapper nationalMapper = sqlSession.getMapper(NationalUnitsMapper.class);
+            nationalMapper.addNational(model);
+            //sqlSession.insert("insertNationalunits",model);
+            //System.out.println(model.toString());
             sqlSession.commit();
         } catch (Exception e) {
             e.printStackTrace();
