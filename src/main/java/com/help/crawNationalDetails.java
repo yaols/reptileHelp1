@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 /***
+ *Some regulations details
  * 部分法规详情
  */
 public class crawNationalDetails {
@@ -27,6 +28,7 @@ public class crawNationalDetails {
     private static List<NationalDetails> NationalDetailsList=new ArrayList<NationalDetails>();
 
     /***
+     * Get body details data based on URL
      * 根据URL 获取正文详情数据
      * @param url
      * @param detailsId 抓取数据url?id=
@@ -51,6 +53,7 @@ public class crawNationalDetails {
 
 
     /***
+     *Request link suffix splicing
      * 请求链接后缀拼接
      * @param urlSuffix
      * @return
@@ -63,6 +66,7 @@ public class crawNationalDetails {
     }
 
     /***
+     * Grab national laws and regulations unit details data
      * 抓取国家法律法规单位详情数据
      * @param url
      * @param detailsId
@@ -107,6 +111,7 @@ public class crawNationalDetails {
 
 
     /***
+     *Department paging entity database new
      * 部门分页实体数据库新增
      * @param NationalDetailsList
      */

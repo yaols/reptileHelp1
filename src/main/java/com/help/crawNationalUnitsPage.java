@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 /***
+ *Departmental unit paging crawl
  * 部门单位分页抓取
  * yaols
  *
@@ -25,7 +26,7 @@ import java.util.List;
 public class crawNationalUnitsPage {
 
     /*
-     *
+     *Grab national laws and regulations unit pagination
      *抓取国家法律法规单位分页
      * */
     public static void crawNationalUnitsPage() throws IOException, InterruptedException {
@@ -49,6 +50,7 @@ public class crawNationalUnitsPage {
 
 
     /***
+     *Get paged url
      * 获取分页url
      * @return
      */
@@ -64,6 +66,7 @@ public class crawNationalUnitsPage {
     }
 
     /*
+     * Grab national laws and regulations unit data
      * 抓取国家法律法规单位数据
      * */
     private static void crawlNationalUnitsData(String url) throws IOException {
@@ -106,6 +109,7 @@ public class crawNationalUnitsPage {
 
 
     /***
+     *Bulk Insert 20 Inserts Once
      * 批量插入  20条插入一次
      * @param list
      */
@@ -127,6 +131,7 @@ public class crawNationalUnitsPage {
     }
 
     /***
+     *Department paging entity database new
      * 部门分页实体数据库新增
      * @param model
      */
@@ -144,6 +149,7 @@ public class crawNationalUnitsPage {
     }
 
     /***
+     *Department paging entity
      * 部门分页实体
      * @param title 标题
      * @param descript  描述
@@ -171,6 +177,7 @@ public class crawNationalUnitsPage {
     }
 
     /***
+     *Paging query mysql database
      * 分页查询mysql数据库
      */
     public static void getNationalUnitsPage() throws IOException, InterruptedException {
@@ -193,6 +200,7 @@ public class crawNationalUnitsPage {
     }
 
     /***
+     *Paging query
      * 分页查询
      * @param start
      * @param pageSize

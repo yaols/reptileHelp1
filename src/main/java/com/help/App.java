@@ -24,6 +24,13 @@ import java.util.List;
 
 public class App {
 
+    /**
+     *Entrance
+     * 入口
+     * @param args
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static  void main(String [] args) throws IOException, InterruptedException {
         System.out.println("Hello World!");
 
@@ -53,6 +60,7 @@ public class App {
     }
 
     /*
+    *Grab national laws and regulations unit data
     * 抓取国家法律法规单位数据
     * */
     private static void crawlNationalUnitsData() throws IOException {
@@ -88,6 +96,7 @@ public class App {
     }
 
     /*
+    *National laws and regulations entities
     * 国家法律法规实体
     * */
     //private static INationalUnits service = new NationalUnitsImpl();
